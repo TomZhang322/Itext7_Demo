@@ -1,0 +1,18 @@
+　　/**
+      * Excel文件下载处理
+      * @return
+      */
+     @RequestMapping("/downloanExcel")
+        public ModelAndView downloanExcel(){
+            List<AuContract> list = new ArrayList<AuContract>();
+
+            list= service.findAuContractList();//获得数据库所有的合同集合
+            Map<String,List<AuContract>> map = new HashMap<String, List<AuContract>>();
+            map.put("infoList", list);
+            ExcelView ve = new ExcelView();
+            return new ModelAndView(ve,map);
+        }
+
+jsp页面代码用的是jQueryUI
+
+<a href="<%=basePath%>/auContract/downloanExcel" class="easyui-linkbutton"data-options="plain:'true',iconCls:'icon-down'">下载Excel</a>
